@@ -8,7 +8,11 @@ from typing import List, Dict, Optional
 import tiktoken
 
 from tree_sitter import Language, Parser, Node
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+try:
+    # Prefer legacy langchain import; fall back to splitters package for newer versions
+    from langchain.text_splitter import RecursiveCharacterTextSplitter
+except ImportError:  # langchain-text-splitters package layout
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Tree-sitter language imports
 import tree_sitter_python
